@@ -1,0 +1,9 @@
+import express from express/express
+
+@eager
+fn handler req res:
+  'Hello World!' -> res.send
+
+express -> call => app
+app -> get '/' handler
+5000 -> toNumber -> app.listen
