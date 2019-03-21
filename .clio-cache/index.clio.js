@@ -31,6 +31,7 @@ module.exports = async function(scope, builtins, file) {
         func.frozenscope = Object.assign({}, scope);
         func.frozenscope['handler'] = func;
         func.frozenscope['recall'] = func;
+        func.is_clio_fn = true;
         return func;
     })(scope), 'handler', scope);
     builtins.decorate_function(await builtins.funcall(['eager'], [scope], builtins.get_symbol, file, {
@@ -84,17 +85,11 @@ module.exports = async function(scope, builtins, file) {
     })]);
     await (async function(__data) {
         var fn = async function(__data) {
-            return await builtins.funcall([await builtins.funcall([...__data], [], await builtins.funcall(['toNumber'], [scope], builtins.get_symbol, file, {
+            return await builtins.funcall([...__data], [], (await builtins.get_property(await builtins.funcall(['app'], [scope], builtins.get_symbol, file, {
                 index: 148,
-                fn: '<get-symbol>'
-            }), file, {
-                index: 148,
-                fn: 'toNumber'
-            })], [], (await builtins.get_property(await builtins.funcall(['app'], [scope], builtins.get_symbol, file, {
-                index: 160,
                 fn: '<get-symbol>'
             }), "listen")), file, {
-                index: 160,
+                index: 148,
                 fn: 'undefined'
             })
         }
